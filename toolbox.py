@@ -1,3 +1,4 @@
+import numpy as np
 class normalize_joints(object):
     
     """
