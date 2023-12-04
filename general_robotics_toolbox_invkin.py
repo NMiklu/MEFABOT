@@ -29,7 +29,7 @@
 from __future__ import absolute_import
 
 import numpy as np
-from . import general_robotics_toolbox as rox
+import general_robotics_toolbox as rox
 import warnings
 
 ex = np.array([1,0,0])
