@@ -426,7 +426,7 @@ def iterative_invkin(robot, desired_pose, q_current, max_steps = 200, Kp = 0.3*n
 
     num_joints = len(robot.joint_type)
 
-    normalize = normalize_joints(robot, q_current, _ignore_limits = True)
+    normalize = normalize_joints(robot, q_current, _ignore_limits = False)
     
     q_cur = d_q # initial guess on the current joint angles
     q_cur = q_cur.reshape((num_joints,1)) 
@@ -437,12 +437,12 @@ def iterative_invkin(robot, desired_pose, q_current, max_steps = 200, Kp = 0.3*n
     converged = False
     while itr < max_steps and not converged:
         
-        pose = rox.fwdkin(robot,q_cur.flatten(),_ignore_limits = True)
+        pose = rox.fwdkin(robot,q_cur.flatten(),_ignore_limits = False)
         R_cur = pose.R
         p_cur = pose.p
         
         #calculate current Jacobian
-        J0T = rox.robotjacobian(robot,q_cur.flatten(),_ignore_limits = True)
+        J0T = rox.robotjacobian(robot,q_cur.flatten(),_ignore_limits = False)
         
         # Transform Jacobian to End effector frame from the base frame
         Tr = np.zeros((6,6))
